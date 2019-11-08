@@ -1,0 +1,361 @@
+[
+    {
+        "id": "54885eba.bb8ca",
+        "type": "tab",
+        "label": "Laser Marking - TCP",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "25934f20.e81818",
+        "type": "function",
+        "z": "54885eba.bb8ca",
+        "name": "Data builder",
+        "func": "firsthasd = new Buffer([\"0x1B\",\"0x05\",\"0x00\",\"0xF2\",\"0x81\",\"0x0D\",\"0x0A\"]);\n\nmsg.payload = firsthasd;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 686.5,
+        "y": 152,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "eb65a449.8ef368",
+        "type": "debug",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1081.5,
+        "y": 302,
+        "wires": []
+    },
+    {
+        "id": "7dc34fa7.e41cf8",
+        "type": "function",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "func": "// replace the payload buffer with the string value\nmsg.payload = msg.payload.toString('utf8');\n\nreturn msg; \n// return the original msg with the new string payload",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 673.5,
+        "y": 488,
+        "wires": [
+            [
+                "eb65a449.8ef368",
+                "f341bb1c.5513b"
+            ]
+        ],
+        "info": "# Laserfix"
+    },
+    {
+        "id": "360289d4.1509f6",
+        "type": "inject",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "topic": "",
+        "payload": "[\"0x1B\",\"0x05\",\"0x00\",\"0xF2\",\"0x81\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 129.5,
+        "y": 323,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "2f7d0d12.f072e2",
+        "type": "tcp request",
+        "z": "54885eba.bb8ca",
+        "server": "localhost",
+        "port": "2709",
+        "out": "time",
+        "splitc": "200",
+        "name": "",
+        "x": 386.5,
+        "y": 483,
+        "wires": [
+            [
+                "7dc34fa7.e41cf8"
+            ]
+        ]
+    },
+    {
+        "id": "f341bb1c.5513b",
+        "type": "ui_text",
+        "z": "54885eba.bb8ca",
+        "group": "3c2665d2.347402",
+        "order": 6,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Received",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 969.5,
+        "y": 487,
+        "wires": []
+    },
+    {
+        "id": "3eb6efe9.597228",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "21bf9e26.8f78da",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Get document list",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x05\",\"0x00\",\"0xF2\",\"0x81\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 369.5,
+        "y": 178,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "b2cdc1ae.6d7e48",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "21bf9e26.8f78da",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Get laser status",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x05\",\"0x00\",\"0xF1\",\"0x91\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 358,
+        "y": 231,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "f98b6716.0a87",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "9fc2e8dc.173028",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start aiming",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x05\",\"0x00\",\"0xF5\",\"0xF1\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 346,
+        "y": 283,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "c803c9ab.870a78",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "21bf9e26.8f78da",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Load joakim.xlp",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "blue",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x10\",\"0x00\",\"0xF2\",\"0x82\",\"0x6A\",\"0x6F\",\"0x61\",\"0x6B\",\"0x69\",\"0x6D\",\"0x2E\",\"0x78\",\"0x6C\",\"0x70\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 364,
+        "y": 330,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "75d4aab5.1dc50c",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "9fc2e8dc.173028",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Stop marking",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x05\",\"0x00\",\"0xF5\",\"0xFF\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 622,
+        "y": 367,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "2567d4a5.f1d584",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "9fc2e8dc.173028",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start marking",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x05\",\"0x00\",\"0xF5\",\"0xF2\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 132,
+        "y": 603,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "4ec4a567.960f84",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "21bf9e26.8f78da",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Set ID myID to \"Hello world\"",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "blue",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x16\",\"0x00\",\"0xF3\",\"0x92\",\"0x6D\",\"0x79\",\"0x49\",\"0x44\",\"0x0A\",\"0x48\",\"0x65\",\"0x6C\",\"0x6C\",\"0x6F\",\"0x20\",\"0x57\",\"0x6F\",\"0x72\",\"0x6C\",\"0x64\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 427,
+        "y": 568,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "bf93e353.3de9e",
+        "type": "ui_button",
+        "z": "54885eba.bb8ca",
+        "name": "",
+        "group": "21bf9e26.8f78da",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Set ID myID to \"618129\"",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "blue",
+        "icon": "",
+        "payload": "[\"0x1B\",\"0x11\",\"0x00\",\"0xF3\",\"0x92\",\"0x6D\",\"0x79\",\"0x49\",\"0x44\",\"0x0A\",\"0x37\",\"0x33\",\"0x32\",\"0x37\",\"0x35\",\"0x34\",\"0x0D\",\"0x0A\"]",
+        "payloadType": "bin",
+        "topic": "",
+        "x": 396,
+        "y": 715,
+        "wires": [
+            [
+                "2f7d0d12.f072e2"
+            ]
+        ]
+    },
+    {
+        "id": "3c2665d2.347402",
+        "type": "ui_group",
+        "z": "",
+        "name": "Data fields",
+        "tab": "ae018182.2e824",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "21bf9e26.8f78da",
+        "type": "ui_group",
+        "z": "",
+        "name": "Editor controller",
+        "tab": "ae018182.2e824",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "9fc2e8dc.173028",
+        "type": "ui_group",
+        "z": "",
+        "name": "Laser control",
+        "tab": "ae018182.2e824",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ae018182.2e824",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Laser marking",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
