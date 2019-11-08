@@ -533,7 +533,7 @@
         "id": "fcaa9bbd.bce14",
         "type": "ui_group",
         "z": "",
-        "name": "Barcodes PostNord",
+        "name": "Barcodes PN",
         "tab": "55c671b9.776b68",
         "disp": true,
         "width": "6",
