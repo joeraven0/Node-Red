@@ -1,0 +1,541 @@
+[
+    {
+        "id": "e7665557.a524a",
+        "type": "tab",
+        "label": "DS5100 - PN - TCP",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "91d7f028.628718",
+        "type": "file",
+        "z": "e7665557.a524a",
+        "name": "",
+        "filename": "postnordArlöv-23092019.txt",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 664,
+        "y": 248.80001831054688,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae5c660d.e56498",
+        "type": "debug",
+        "z": "e7665557.a524a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 797,
+        "y": 137.59999084472656,
+        "wires": []
+    },
+    {
+        "id": "27f7844a.1012a4",
+        "type": "ui_text",
+        "z": "e7665557.a524a",
+        "group": "fcaa9bbd.bce14",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Barcode",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 588.9999847412109,
+        "y": 373.40000915527344,
+        "wires": []
+    },
+    {
+        "id": "9de15f20.a60048",
+        "type": "switch",
+        "z": "e7665557.a524a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "01",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "01",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 107.99998474121094,
+        "y": 642.2000122070312,
+        "wires": [
+            [
+                "1c0953d4.5fa4b4"
+            ],
+            [
+                "ec1369c5.37ba3"
+            ]
+        ]
+    },
+    {
+        "id": "51246031.f7baa",
+        "type": "ui_text",
+        "z": "e7665557.a524a",
+        "group": "fcaa9bbd.bce14",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Good read counter",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 900,
+        "y": 649,
+        "wires": []
+    },
+    {
+        "id": "8321f202.50afc",
+        "type": "ui_text",
+        "z": "e7665557.a524a",
+        "group": "fcaa9bbd.bce14",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "BAD read counter",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 907.2000122070312,
+        "y": 577.2000122070312,
+        "wires": []
+    },
+    {
+        "id": "1c0953d4.5fa4b4",
+        "type": "counter",
+        "z": "e7665557.a524a",
+        "name": "",
+        "init": "0",
+        "step": "1",
+        "lower": null,
+        "upper": null,
+        "mode": "increment",
+        "outputs": "1",
+        "x": 291.4000244140625,
+        "y": 570.5999755859375,
+        "wires": [
+            [
+                "2cd098ab.fea548"
+            ]
+        ]
+    },
+    {
+        "id": "9acf6b76.fb1638",
+        "type": "inject",
+        "z": "e7665557.a524a",
+        "name": "",
+        "topic": "",
+        "payload": "01",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 80,
+        "y": 545,
+        "wires": [
+            [
+                "9de15f20.a60048"
+            ]
+        ]
+    },
+    {
+        "id": "ca38026b.8ea4f8",
+        "type": "inject",
+        "z": "e7665557.a524a",
+        "name": "",
+        "topic": "",
+        "payload": "0125125123",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 102,
+        "y": 592.2000122070312,
+        "wires": [
+            [
+                "9de15f20.a60048"
+            ]
+        ]
+    },
+    {
+        "id": "ec1369c5.37ba3",
+        "type": "counter",
+        "z": "e7665557.a524a",
+        "name": "",
+        "init": "0",
+        "step": "1",
+        "lower": null,
+        "upper": null,
+        "mode": "increment",
+        "outputs": "1",
+        "x": 275.1999969482422,
+        "y": 649.2000122070312,
+        "wires": [
+            [
+                "ed36226e.5133a8"
+            ]
+        ]
+    },
+    {
+        "id": "d47e4338.433d48",
+        "type": "debug",
+        "z": "e7665557.a524a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 708.2000122070312,
+        "y": 514.2000122070312,
+        "wires": []
+    },
+    {
+        "id": "48e37025.ed528",
+        "type": "file",
+        "z": "e7665557.a524a",
+        "name": "",
+        "filename": "goodreadcount-23092019.txt",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 666.2000122070312,
+        "y": 651.2000122070312,
+        "wires": [
+            [
+                "51246031.f7baa"
+            ]
+        ]
+    },
+    {
+        "id": "dab748ca.898f88",
+        "type": "file",
+        "z": "e7665557.a524a",
+        "name": "",
+        "filename": "badreadcount-23092019.txt",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 673.2000122070312,
+        "y": 574.2000122070312,
+        "wires": [
+            [
+                "8321f202.50afc"
+            ]
+        ]
+    },
+    {
+        "id": "6f22f3c6.06c37c",
+        "type": "inject",
+        "z": "e7665557.a524a",
+        "name": "Reset counter",
+        "topic": "",
+        "payload": "0000",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 161.1999969482422,
+        "y": 406.2000274658203,
+        "wires": [
+            [
+                "786bc053.4c60c8",
+                "27f7844a.1012a4",
+                "dab748ca.898f88",
+                "48e37025.ed528"
+            ]
+        ]
+    },
+    {
+        "id": "786bc053.4c60c8",
+        "type": "change",
+        "z": "e7665557.a524a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 187.99998474121094,
+        "y": 457.20001220703125,
+        "wires": [
+            [
+                "1c0953d4.5fa4b4",
+                "ec1369c5.37ba3"
+            ]
+        ]
+    },
+    {
+        "id": "2cd098ab.fea548",
+        "type": "change",
+        "z": "e7665557.a524a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "count",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 456,
+        "y": 571,
+        "wires": [
+            [
+                "dab748ca.898f88",
+                "d47e4338.433d48"
+            ]
+        ]
+    },
+    {
+        "id": "ed36226e.5133a8",
+        "type": "change",
+        "z": "e7665557.a524a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "count",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 441.20001220703125,
+        "y": 651.2000122070312,
+        "wires": [
+            [
+                "48e37025.ed528",
+                "d47e4338.433d48"
+            ]
+        ]
+    },
+    {
+        "id": "6270f21e.20e754",
+        "type": "function",
+        "z": "e7665557.a524a",
+        "name": "",
+        "func": "var mymsg = msg.payload;\nvar d= new Date();\n\nmymsg = mymsg + \" \" + d;\nmsg.payload = mymsg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 541.949951171875,
+        "y": 191.98333740234375,
+        "wires": [
+            [
+                "ae5c660d.e56498",
+                "91d7f028.628718"
+            ]
+        ]
+    },
+    {
+        "id": "ac3653f8.09ce28",
+        "type": "inject",
+        "z": "e7665557.a524a",
+        "name": "",
+        "topic": "",
+        "payload": "512132315",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 136.94998168945312,
+        "y": 160,
+        "wires": [
+            [
+                "6270f21e.20e754"
+            ]
+        ]
+    },
+    {
+        "id": "56c9b862.22cea",
+        "type": "ui_button",
+        "z": "e7665557.a524a",
+        "name": "",
+        "group": "fcaa9bbd.bce14",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset bad read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 128.94998168945312,
+        "y": 788.3499755859375,
+        "wires": [
+            [
+                "bf2fd971.2bbda8"
+            ]
+        ]
+    },
+    {
+        "id": "a5c9f383.94d7c8",
+        "type": "ui_button",
+        "z": "e7665557.a524a",
+        "name": "",
+        "group": "fcaa9bbd.bce14",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset good read",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 157.11666870117188,
+        "y": 852.11669921875,
+        "wires": [
+            [
+                "daa96be1.6e985"
+            ]
+        ]
+    },
+    {
+        "id": "bf2fd971.2bbda8",
+        "type": "change",
+        "z": "e7665557.a524a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 352.1166687011719,
+        "y": 787.11669921875,
+        "wires": [
+            [
+                "1c0953d4.5fa4b4"
+            ]
+        ]
+    },
+    {
+        "id": "daa96be1.6e985",
+        "type": "change",
+        "z": "e7665557.a524a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 408.1166687011719,
+        "y": 846.11669921875,
+        "wires": [
+            [
+                "ec1369c5.37ba3"
+            ]
+        ]
+    },
+    {
+        "id": "364f2550.cace02",
+        "type": "tcp in",
+        "z": "e7665557.a524a",
+        "name": "",
+        "server": "server",
+        "host": "",
+        "port": "7500",
+        "datamode": "stream",
+        "datatype": "buffer",
+        "newline": "",
+        "topic": "",
+        "base64": false,
+        "x": 141.99998474121094,
+        "y": 250.2833251953125,
+        "wires": [
+            [
+                "6270f21e.20e754",
+                "786bc053.4c60c8",
+                "9de15f20.a60048"
+            ]
+        ]
+    },
+    {
+        "id": "fcaa9bbd.bce14",
+        "type": "ui_group",
+        "z": "",
+        "name": "Barcodes PostNord",
+        "tab": "55c671b9.776b68",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "55c671b9.776b68",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
